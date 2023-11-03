@@ -21,7 +21,11 @@ function addNote() {
     const trash = note.querySelector(".trash");
     const textarea = note.querySelector("textarea");
 
-    save.addEventListener("click", saveNotes)
+    save.addEventListener("click", saveNotes);
+
+    // on input text add to storage
+    textarea.addEventListener("input",saveNotes);
+    
     main.appendChild(note);
 
 }
@@ -30,4 +34,12 @@ function saveNotes() {
     const notes = document.querySelectorAll(".note textarea");
     const data = Array.from(notes).map(note => note.value);
     console.log(notes, data)
+    if (data.length === 0) {
+        localStorage.removeItem("notes");
+    }
+    else {
+        localStorage.setItem("notes", JSON.stringify(data))
+    }
+
+
 }
