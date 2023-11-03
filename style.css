@@ -13,6 +13,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: flex-start;
+    flex-wrap: wrap;
 }
 #addBtn{
     position: absolute;
@@ -32,7 +33,7 @@ body{
 }
 
 .note{
-    width: 400px;
+    width: 300px;
     background-color: #393e46;
     margin: 15px;
     border-radius: 10px;
@@ -59,7 +60,7 @@ transition: color 0.3s ease;
     color: #aca1a1;
 }
 .note textarea{
-    width: 400px;
+    width: 300px;
     border: none;
     min-height: 220px;
     resize: none;
