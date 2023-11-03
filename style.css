@@ -30,3 +30,16 @@ body{
 #addBtn:hover{
     background-color: #06a086;
 }
+
+.note{
+    width: 300px;
+    background-color: #393e46;
+    margin: 15px;
+    border-radius: 10px;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: box-shadow 0.3s ease ;
+}
+.note:hover{
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.3);
+}
