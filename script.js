@@ -67,22 +67,20 @@ function saveNotes() {
 
 }
 
-
-function loadNotes(){
-    const isNote = JSON.parse(localStorage.getItem("notes"));
-    if(isNote !== null)
-    {
-        isNote.forEach(noteText =>
-            {
-                addNote();
-                const notes = document.querySelector(".notes textarea")
-                const lastNote = notes[notes.length -1];
-                lastNote.value = noteText;
-            }
-        );
-    }
-    else{
-        addNote();
+// }
+function loadNotes() {
+    // Make sure 'notes' is the correct key you used to save the notes
+    const storedNotes = JSON.parse(localStorage.getItem("notes"));
+    if (storedNotes !== null) {
+        storedNotes.forEach(noteText => {
+            addNote(); // Create a new note element
+            const textareas = document.querySelectorAll(".note textarea"); // Select all textareas
+            const lastTextarea = textareas[textareas.length - 1]; // Get the last one (the one we just added)
+            lastTextarea.value = noteText; // Set its value to the stored text
+        });
+    } else {
+        addNote(); // If no notes are stored, create a new blank note
     }
 }
+
 loadNotes();
