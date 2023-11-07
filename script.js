@@ -13,12 +13,14 @@ function addNote() {
     <div class="tool">
     <i class="save fas fa-save"></i>
     <i class="trash fas fa-trash"></i>
+    <i class="edit fas fa-edit"></i> 
 </div>
 <textarea></textarea>
     `;
     // save delete
     const save = note.querySelector(".save");
     const trash = note.querySelector(".trash");
+    const editBtn = note.querySelector(".edit");
     const textarea = note.querySelector("textarea");
     trash.addEventListener("click",()=>{
 
@@ -27,6 +29,19 @@ function addNote() {
 
     });
 
+     // Edit button event listener
+     editBtn.addEventListener("click", () => {
+        // Toggle the editable state of the textarea
+        if (textarea.hasAttribute('readonly')) {
+            textarea.removeAttribute('readonly');
+            textarea.focus(); // Automatically focus to the textarea
+            editBtn.classList.add('editing'); // Optionally, toggle an 'editing' class for CSS styling
+        } else {
+            textarea.setAttribute('readonly', 'readonly');
+            editBtn.classList.remove('editing'); // Remove the editing class if present
+        }
+        saveNotes();
+    });
 
 
     save.addEventListener("click", saveNotes);
@@ -52,22 +67,20 @@ function saveNotes() {
 
 }
 
-
-function loadNotes(){
-    const isNote = JSON.parse(localStorage.getItem("notes"));
-    if(isNote !== null)
-    {
-        isNote.forEach(noteText =>
-            {
-                addNote();
-                const notes = document.querySelector(".notes textarea")
-                const lastNote = notes[notes.length -1];
-                lastNote.value = noteText;
-            }
-        );
-    }
-    else{
-        addNote();
+// }
+function loadNotes() {
+    // Make sure 'notes' is the correct key you used to save the notes
+    const storedNotes = JSON.parse(localStorage.getItem("notes"));
+    if (storedNotes !== null) {
+        storedNotes.forEach(noteText => {
+            addNote(); // Create a new note element
+            const textareas = document.querySelectorAll(".note textarea"); // Select all textareas
+            const lastTextarea = textareas[textareas.length - 1]; // Get the last one (the one we just added)
+            lastTextarea.value = noteText; // Set its value to the stored text
+        });
+    } else {
+        addNote(); // If no notes are stored, create a new blank note
     }
 }
+
 loadNotes();
