@@ -13,12 +13,14 @@ function addNote() {
     <div class="tool">
     <i class="save fas fa-save"></i>
     <i class="trash fas fa-trash"></i>
+    <i class="edit fas fa-edit"></i> 
 </div>
 <textarea></textarea>
     `;
     // save delete
     const save = note.querySelector(".save");
     const trash = note.querySelector(".trash");
+    const editBtn = note.querySelector(".edit");
     const textarea = note.querySelector("textarea");
     trash.addEventListener("click",()=>{
 
@@ -27,6 +29,19 @@ function addNote() {
 
     });
 
+     // Edit button event listener
+     editBtn.addEventListener("click", () => {
+        // Toggle the editable state of the textarea
+        if (textarea.hasAttribute('readonly')) {
+            textarea.removeAttribute('readonly');
+            textarea.focus(); // Automatically focus to the textarea
+            editBtn.classList.add('editing'); // Optionally, toggle an 'editing' class for CSS styling
+        } else {
+            textarea.setAttribute('readonly', 'readonly');
+            editBtn.classList.remove('editing'); // Remove the editing class if present
+        }
+        saveNotes();
+    });
 
 
     save.addEventListener("click", saveNotes);
