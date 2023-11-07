@@ -17,10 +17,8 @@ A simple and intuitive note-taking application designed to help you capture your
 
 
 1. Clone the repository:
-git clone https://github.com/abenooo/notes-taking.git
+git clone https://abenooo.github.io/Note_Taking_App/
 Navigate to the project directory:
-bash
-Copy code
 cd notes-taking
 Open index.html in your preferred web browser to start the application.
 Usage
